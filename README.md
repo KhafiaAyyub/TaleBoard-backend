@@ -5,7 +5,6 @@
 ## Tech Stack
 
 - **Backend**: Spring Boot, Hibernate, JWT Authentication
-- **Frontend**: React
 - **Database**: MySQL
 - **Other Libraries**: RESTful APIs, Responsive UI, Admin Panel
 
