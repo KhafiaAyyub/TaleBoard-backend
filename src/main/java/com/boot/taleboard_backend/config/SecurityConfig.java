@@ -1,6 +1,8 @@
 package com.boot.taleboard_backend.config;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,14 +33,21 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll() // Login/Register allowed
-                        .anyRequest().authenticated()               // Everything else needs login
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")  // Only ADMIN can access admin endpoints
+                        .requestMatchers("/api/user/**").hasRole("USER")  // Only USER can access user endpoints
+                        .anyRequest().authenticated() // All other requests need authentication
                 )
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Stateless session management
+                .authenticationProvider(authenticationProvider()) // Custom authentication provider
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class) // JWT filter before UsernamePasswordAuthenticationFilter
                 .build();
     }
+    
+    
+//    List<SimpleGrantedAuthority> authorities = 
+//    	    List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
+//
 
     @Bean
     public AuthenticationManager authenticationManager(
