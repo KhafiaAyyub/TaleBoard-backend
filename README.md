@@ -6,7 +6,6 @@
 
 - **Backend**: Spring Boot, Hibernate, JWT Authentication
 - **Database**: MySQL
-- **Other Libraries**: RESTful APIs, Responsive UI, Admin Panel
 
 ## Features
 
