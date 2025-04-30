@@ -8,7 +8,6 @@
 - **Database**: MySQL
 
 ## Features
-
 - **User Authentication**: Secure JWT-based authentication for signing up, logging in, and managing user accounts.
 - **Blog Posts**: Create, update, and delete posts with ease. Each post is stored in a MySQL database.
 - **Comments**: Comment on posts, with the option to edit or delete comments.
